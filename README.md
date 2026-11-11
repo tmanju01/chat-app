@@ -1,51 +1,77 @@
-# NEXORA — Modern Chat Application
+# NEXORA – Modern Chat Application
 
-A responsive team and direct messaging application built with **React**, **TypeScript**, **Tailwind CSS**, and **Redux Toolkit**. Designed with midnight dark and daylight themes, a three-pane desktop layout, and a full-screen mobile chat view.
+A modern, responsive team communication platform built with React, TypeScript, Redux Toolkit, and Tailwind CSS.
 
-## Key Features
+## Features
 
-- **Conversations & Search**: Direct and group chats, `All` / `Unread` / `Groups` filters, debounced search, unread badges, priority flags, and online/offline presence indicators.
-- **Messaging**: Send (`Enter` / `Shift + Enter`), edit (`edited` indicator), delete with confirmation, quoted replies, threaded replies panel, pin/unpin messages, copy-to-clipboard toast, emoji picker & reactions, inline formatting (`**bold**`, `` `code` ``, links), and date-grouped history.
-- **File & Offline Support**: Local image/file attachment previews with lightbox, historical message pagination, simulated typing/delivery/read lifecycle, and offline message queuing.
-- **Group & Contact Info**: View contact profiles or manage group details and members (add/remove) via mock services.
-- **Keyboard & Persistence**: `Ctrl + K` / `Cmd + K` command palette, Dark/Light theme toggle, and `localStorage` persistence.
+- Individual and group conversations.
+- Search and filter conversations.
+- Send and receive messages.
+- Edit, delete, and reply to messages.
+- Emoji reactions and copy messages.
+- Message timestamps and read receipts.
+- Typing indicators.
+- Group member management.
+- Dark and light themes.
+- Responsive desktop and mobile UI.
+- LocalStorage persistence.
 
 ## Tech Stack
 
-- **React 19** + **Vite** + **TypeScript**
-- **Tailwind CSS v4** + **Lucide React**
-- **Redux Toolkit** + **React Redux**
-- **React Hook Form**
-- **Vitest** + **React Testing Library**
+- React.js + Vite
+- TypeScript
+- Tailwind CSS
+- Redux Toolkit
+- React Hook Form
+- Lucide React
+- Vitest
+- LocalStorage
 
-## Getting Started
+## Installation
 
 ```bash
-npm install      # Install dependencies
-npm run dev      # Start dev server (http://localhost:5173)
-npm test         # Run unit and interaction tests
-npm run build    # Type-check and build for production
-npm run lint     # Run linter
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd nexora
+npm install
+npm run dev
 ```
 
-## Architecture & State Management
+## Available Scripts
 
-Global state is managed by four Redux Toolkit slices (`conversations`, `messages`, `groups`, `theme`), while transient UI state (open modals, menus, input drafts) stays in local React state. Mock Promise-based services in `src/services/` simulate API latency and persist updates to `localStorage`.
-
-```mermaid
-flowchart TB
-    UI["React Components"] -->|"useAppDispatch"| Store["Redux Toolkit Store"]
-    Store --> Slices["Slices (conversations, messages, groups, theme)"]
-    Slices -->|"createAsyncThunk"| Services["Mock API Services"]
-    Services <-->|"JSON"| LS[("LocalStorage")]
-    Slices -->|"Memoized Selectors"| UI
+```bash
+npm run dev       # Start development server
+npm run build     # Production build
+npm run preview   # Preview production build
+npm run test      # Run unit tests
 ```
 
-### Performance & 10,000+ Messages
+## Project Architecture
 
-- Uses `React.memo`, memoized `createSelector` hooks, debounced search, lazy-loaded `CommandPalette`, and proper cleanup for timers and window listeners.
-- To support **10,000+ messages** per conversation, `MessageList` can adopt `@tanstack/react-virtual` (`useVirtualizer` with `measureElement`) so only visible rows render in the DOM ($O(1)$) while preserving scroll-to-match behavior.
+The application follows a feature-based architecture with separate components, Redux slices, services, hooks, types, and utilities.
 
-## Screenshots
+Redux Toolkit manages conversations, messages, groups, and themes.
 
-> Add desktop, dark/light theme, and mobile screenshots here.
+Mock API services simulate backend functionality without requiring a real backend.
+
+## Testing
+
+Vitest and React Testing Library are used to test important components and user interactions.
+
+## Future Improvements
+
+- Real-time messaging with WebSockets.
+- File attachments.
+- Infinite scrolling.
+- Message virtualization.
+- Backend API integration.
+
+## Assignment
+
+**Company:** Quantum Heaps  
+**Role:** Senior Frontend Developer  
+**Project:** Responsive Chat Application  
+**Focus:** Frontend Engineering and Architecture
+
+---
+
+Built with React, TypeScript, Redux Toolkit, and Tailwind CSS.
